@@ -1,12 +1,73 @@
 <section class="container-fluid flex-grow-1">
-    <h1>Blog de Angular</h1>
-    <p>Blog works!</p>
-    <div class="row">
-        <div class="col">
-            <app-form></app-form>
+  <h1>Blog de Angular</h1>
+  <div class="row g-4">
+    <section class="col-12 col-md-4 col-lg-3">
+      <h2 class="h4 mb-3">Nueva publicación</h2>
+
+      @if (error) {
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
+      }
+
+      <form #form>
+        <div class="mb-3">
+          <label for="titulo" class="form-label">Título</label>
+          <input
+            #titulo
+            id="titulo"
+            type="text"
+            class="form-control"
+            placeholder="Título de la noticia"
+          />
         </div>
-        <div class="col">
-            <app-new-block></app-new-block>
+
+        <div class="mb-3">
+          <label for="imagen" class="form-label">Imagen (URL)</label>
+          <input #imagen id="imagen" type="url" class="form-control" placeholder="https://..." />
         </div>
-    </div>
+
+        <div class="mb-3">
+          <label for="cuerpo" class="form-label">Texto</label>
+          <textarea
+            #cuerpo
+            id="cuerpo"
+            rows="4"
+            class="form-control"
+            placeholder="Escribe la noticia..."
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="fecha" class="form-label">Fecha de publicación</label>
+          <input #fecha id="fecha" type="date" class="form-control" />
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-primary w-100"
+          (click)="publicar(titulo.value, imagen.value, cuerpo.value, fecha.value, form)"
+        >
+          Publicar
+        </button>
+      </form>
+    </section>
+
+    <section class="col-12 col-md-8 col-lg-9">
+      <div class="row g-4">
+        @for (noticia of listaNoticias; track $index) {
+          <div class="col-12 col-xxl-4">
+            <article class="card h-100">
+              <img [src]="noticia.imagen" [alt]="noticia.titulo" class="card-img-top" />
+              <div class="card-body">
+                <h3 class="card-title h5">{{ noticia.titulo }}</h3>
+                <p class="card-text">{{ noticia.cuerpo }}</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">{{ noticia.fecha.toLocaleDateString() }}</small>
+              </div>
+            </article>
+          </div>
+        }
+      </div>
+    </section>
+  </div>
 </section>
