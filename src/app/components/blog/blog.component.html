@@ -8,7 +8,7 @@
         <div class="alert alert-danger" role="alert">{{ error }}</div>
       }
 
-      <form #form>
+      <form #form class="bg-info-subtle p-4">
         <div class="mb-3">
           <label for="titulo" class="form-label">Título</label>
           <input
@@ -22,7 +22,7 @@
 
         <div class="mb-3">
           <label for="imagen" class="form-label">Imagen (URL)</label>
-          <input #imagen id="imagen" type="url" class="form-control" placeholder="https://..." />
+          <input #imagen id="imagen" type="url" class="form-control" placeholder="https://... [image URL]" />
         </div>
 
         <div class="mb-3">
@@ -56,7 +56,7 @@
         @for (noticia of listaNoticiasDisplay; track $index) {
           <div class="col-12 col-xxl-4">
             <article class="card h-100">
-              <img [src]="noticia.imagen" [alt]="noticia.titulo" class="card-img-top" />
+              <img [src]="noticia.imagen" [alt]="noticia.titulo" class="card-img-top" onerror="this.src='images/favicon-b.png';" />
               <div class="card-body">
                 <h3 class="card-title h5">{{ noticia.titulo }}</h3>
                 <p class="card-text">{{ noticia.cuerpo }}</p>
