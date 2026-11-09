@@ -1,7 +1,7 @@
 <section class="container-fluid flex-grow-1">
   <h1>Blog de Angular</h1>
   <div class="row g-4">
-    <section class="col-12 col-md-4 col-lg-3">
+    <section class="col-12 p-5 col-md-4 col-lg-3">
       <h2 class="h4 mb-3">Nueva publicación</h2>
 
       @if (error) {
@@ -51,9 +51,9 @@
       </form>
     </section>
 
-    <section class="col-12 col-md-8 col-lg-9">
+    <section class="col-12 p-3 col-md-8 col-lg-9">
       <div class="row g-4">
-        @for (noticia of listaNoticias; track $index) {
+        @for (noticia of listaNoticiasDisplay; track $index) {
           <div class="col-12 col-xxl-4">
             <article class="card h-100">
               <img [src]="noticia.imagen" [alt]="noticia.titulo" class="card-img-top" />

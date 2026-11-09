@@ -10,4 +10,5 @@ import { BlogComponent } from './components/blog/blog.component';
 })
 export class App {
   protected readonly title = signal('SistemaBloggingAngular');
+  textoBusqueda = signal('');
 }

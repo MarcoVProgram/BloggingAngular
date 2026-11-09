@@ -1,20 +1,22 @@
 <section class="d-flex flex-column min-vh-100">
   <nav class="navbar fixed-top bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand"><img src="favicon.ico" />ngular<span class="text-muted">Blogging</span></a>
-      <form class="d-flex flex-grow-1" role="search">
+      <a class="navbar-brand"
+        ><img src="favicon.ico" />ngular<span class="text-muted">Blogging</span></a
+      >
+      <form class="d-flex flex-grow-1" role="search" (submit)="$event.preventDefault()">
         <input
           class="form-control me-2"
           type="search"
           placeholder="Buscar..."
           aria-label="Search"
+          (input)="textoBusqueda.set($any($event.target).value)"
         />
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
     </div>
   </nav>
   <main class="flex-grow-1 mt-5 pt-5">
-    <app-blog></app-blog>
+    <app-blog [filtro]="textoBusqueda()"></app-blog>
   </main>
   <footer
     class="d-flex flex-wrap justify-content-between align-items-center py-3 px-4 border-top sticky-bottom bg-body-secondary"
@@ -27,7 +29,9 @@
       >
         <i class="bi bi-bootstrap-fill"></i>
       </a>
-      <span class="mb-3 mb-md-0 text-body-secondary"><i class="bi bi-c-circle"></i> 2026 BloggingAngular, Inc</span>
+      <span class="mb-3 mb-md-0 text-body-secondary"
+        ><i class="bi bi-c-circle"></i> 2026 BloggingAngular, Inc</span
+      >
     </div>
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
       <li class="ms-3">
